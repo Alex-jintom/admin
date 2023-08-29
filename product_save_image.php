@@ -20,7 +20,7 @@ if($_FILES['savefile']['type']!='image/jpeg' and $_FILES['savefile']['type']!='i
     exit;
 }
 
-$save_dir = $_SERVER['DOCUMENT_ROOT']."/pdata/";//파일을 업로드할 디렉토리
+$save_dir = "/var/www/html/data/";//파일을 업로드할 디렉토리
 $filename = $_FILES["savefile"]["name"];
 $ext = pathinfo($filename,PATHINFO_EXTENSION);//확장자 구하기
 $newfilename = date("YmdHis").substr(rand(),0,6);
@@ -43,4 +43,3 @@ if(move_uploaded_file($_FILES["savefile"]["tmp_name"], $save_dir.$savefile)){//�
 
 
 ?>
- 

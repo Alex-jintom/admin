@@ -263,6 +263,8 @@ while($rs = $result->fetch_object()){
                     }
                 }
         });
+
+        
     }
 
     $("#pcode2_1").change(function(){
@@ -286,6 +288,33 @@ while($rs = $result->fetch_object()){
 
 </script>
 
+
+
+
+<script>
+    $(".cate_sel").change(function(){
+        var cate = $(this).val();
+        var step = $(this).attr("data-id");
+        step = parseInt(step)+1;
+       
+        var data = {
+            cate : cate,
+            step : step
+        };
+
+        $.ajax({
+            async : false ,
+            type : 'post' ,
+            url : 'category_ajax.php' ,
+            data  : data ,
+            dataType : 'html' ,
+            error : function() {} ,
+            success : function(return_data) {
+                $("#cate"+step).html(return_data);
+            }
+        });
+    });
+</script>
 
     <?php
 include "/var/www/html/footer.php";

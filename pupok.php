@@ -81,7 +81,7 @@ if($rs){
 
     $upquery="update product_image_table set pid=".$pid." where imgid in (".$file_table_id.")";
     $fs=$mysqli->query($upquery) or die($mysqli->error);
-    echo "<script>alert('등록했습니다.');location.href='/admin/product_list.php';</script>";
+    echo "<script>alert('등록했습니다.');location.href='product_list.php';</script>";
     exit;
 
 }else{
