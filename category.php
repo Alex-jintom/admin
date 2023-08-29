@@ -292,7 +292,7 @@ while($rs = $result->fetch_object()){
 
 
 <script>
-    $(".cate_sel").change(function(){
+    /*$(".cate_sel").change(function(){
         var cate = $(this).val();
         var step = $(this).attr("data-id");
         step = parseInt(step)+1;
