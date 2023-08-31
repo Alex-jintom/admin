@@ -2,12 +2,11 @@
 include "/var/www/html/dbcon.php";
 ini_set( 'display_errors', '0' );
 
-
-
 if(!$_SESSION['AUID']){
     echo "<script>alert('권한이 없습니다.');history.back();</script>";
     exit;
 }
+
 
 
 $cate=$_POST["cate1"].$_POST["cate2"].$_POST["cate3"];//대중소분류를 모두 저장한다.
@@ -50,7 +49,7 @@ if($_FILES["thumbnail"]["name"]){//첨부한 파일이 있으면
         $thumbnail = $newfilename.".".$ext;//새로운 파일이름과 확장자를 합친다
        
         if(move_uploaded_file($_FILES["thumbnail"]["tmp_name"], $save_dir.$thumbnail)){
-            $thumbnail = $_CONFIG["CDN_SERVER"]."/var/www/html/data/".$thumbnail;
+            $thumbnail = "/var/www/html/data/".$thumbnail;
         }else{
             echo "<script>alert('이미지를 등록할 수 없습니다. 관리자에게 문의해주십시오.');history.back();</script>";
             exit;
@@ -115,7 +114,7 @@ if($rs){
             $optionImage1 = $newfilename.".".$ext;//새로운 파일이름과 확장자를 합친다
            
             if(move_uploaded_file($_FILES["optionImage1"]["tmp_name"][$k], $save_dir.$optionImage1)){
-                $upload_option_image[]=$_CONFIG["CDN_SERVER"]."/var/www/html/data/".$optionImage1;
+                $upload_option_image[]="/var/www/html/data/".$optionImage1;
             }
 
         }
@@ -199,6 +198,5 @@ if($rs){
     echo "<script>alert('등록하지 못했습니다. 관리자에게 문의해주십시오.');history.back();</script>";
     exit;
 }
-
 
 ?>

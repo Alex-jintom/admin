@@ -76,7 +76,7 @@ if($search_keyword){
 
 
 
-$sql = "select * from products where 1=1";
+$sql = "select *, (select sum(cnt) from wms w where w.pid=p.pid) as sumcnt from products p where 1=1";
 $sql .= $search_where;
 $order = " order by pid desc";//마지막에 등록한걸 먼저 보여줌
 $limit = " limit $startLimit, $pageCount";
@@ -156,9 +156,7 @@ if($lastPageNumber > $totalPage) $lastPageNumber = $totalPage;
         </div>
         <div class="input-group mb-12" style="width:100%;padding-bottom:10px;">
             <input class="form-check-input" type="checkbox" name="ismain" id="ismain" value="1" <?php if($ismain){echo "checked";}?>>메인&nbsp;
-
             <input class="form-check-input" type="checkbox" name="isnew" id="isnew" value="1" <?php if($isnew){echo "checked";}?>>신제품&nbsp;
-
             <input class="form-check-input" type="checkbox" name="isbest" id="isbest" value="1" <?php if($isbest){echo "checked";}?>>베스트&nbsp;
             <input class="form-check-input" type="checkbox" name="isrecom" id="isrecom" value="1" <?php if($isrecom){echo "checked";}?>>추천&nbsp;
             판매종료일:<input type="text" class="form-control" style="max-width:150px;" name="sale_end_date" id="sale_end_date" value="<?php echo $sale_end_date?>">&nbsp;
@@ -200,11 +198,9 @@ if($lastPageNumber > $totalPage) $lastPageNumber = $totalPage;
               <?php echo number_format($r->sale_price);?>원
             <?php }?>
             </td>
-            <td style="text-align:right;"><?php echo number_format($r->cnt-$r->sale_cnt);?>EA</td>
+            <td style="text-align:right;"><?php echo number_format($r->sumcnt);?>EA</td>
             <td style="text-align:center;"><input type="checkbox" name="ismain[<?php echo $r->pid;?>]" id="ismain_<?php echo $r->pid;?>" value="1" <?php if($r->ismain){echo "checked";}?>></td>
-
             <td style="text-align:center;"><input type="checkbox" name="isnew[<?php echo $r->pid;?>]" id="isnew_<?php echo $r->pid;?>" value="1" <?php if($r->isnew){echo "checked";}?>></td>
-
             <td style="text-align:center;"><input type="checkbox" name="isbest[<?php echo $r->pid;?>]" id="isbest_<?php echo $r->pid;?>" value="1" <?php if($r->isbest){echo "checked";}?>></td>
             <td style="text-align:center;"><input type="checkbox" name="isrecom[<?php echo $r->pid;?>]" id="isrecom_<?php echo $r->pid;?>" value="1" <?php if($r->isrecom){echo "checked";}?>></td>
             <td style="text-align:center;">
