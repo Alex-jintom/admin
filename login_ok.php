@@ -17,7 +17,7 @@ if($rs){
     $_SESSION['AUNAME']= $rs->username;
     $_SESSION['ALEVEL']= $rs->level;
    
-    echo "<script>alert('어서오십시오.');location.href='/admin/product_list.php';</script>";
+    echo "<script>alert('어서오십시오.');location.href='/product_list.php';</script>";
     exit;
 
 }else{
