@@ -1,6 +1,6 @@
 <?php session_start();
 include "/var/www/html/dbcon.php";
-ini_set( 'display_errors', '0' );
+ini_set( 'display_errors','0');
 
 
 
@@ -59,7 +59,7 @@ if($_FILES["thumbnail"]["name"]){//첨부한 파일이 있으면
 }
 
 $sale_cnt = 0;//판매량
-$query="INSERT INTO products
+$query = "INSERT INTO products
 (name, cate, content, thumbnail, price, sale_price, sale_ratio, cnt, sale_cnt, isnew, isbest, isrecom, ismain, locate, userid, sale_end_date, reg_date, delivery_fee)
 VALUES('$name'
 , '".$cate."'
@@ -68,8 +68,8 @@ VALUES('$name'
 , '".$price."'
 , '".$sale_price."'
 , '".$sale_ratio."'
-, ".$cnt."
-, ".$sale_cnt."
+, '".$cnt."'
+, '".$sale_cnt."'
 , '".$isnew."'
 , '".$isbest."'
 , '".$isrecom."'
@@ -80,6 +80,8 @@ VALUES('$name'
 , now()
 , '".$delivery_fee."'
 )";
+
+
 
 $rs=$mysqli->query($query) or die($mysqli->error);
 $pid = $mysqli -> insert_id;
@@ -128,7 +130,7 @@ if($rs){
         if($on){
             $optQuery="INSERT INTO jin.product_options
             (pid, cate, option_name, option_price, image_url)
-            VALUES (".$pid.", '".$optionCate1."', '".$on."', ".$optionPrice1[$k].", '".$upload_option_image[$k]."')";
+            VALUES (".$pid.", '".$optionCate1."', '".$on."', ".$optionPrice1[$k].", ".$upload_option_image[$k].")";
             $ofs=$mysqli->query($optQuery) or die($mysqli->error);
             $poid=$mysqli->insert_id;
             $op1[]=$poid;

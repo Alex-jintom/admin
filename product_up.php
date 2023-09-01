@@ -332,7 +332,7 @@ while($rs = $result->fetch_object()){
             }else{
                 imgid = $("#file_table_id").val() + return_data.imgid + ",";
                 $("#file_table_id").val(imgid);
-                var html = "<div class='col' id='f_"+return_data.imgid+"'><div class='card h-100'><img src='/pdata/"+return_data.savename+"' class='card-img-top'><div class='card-body'><button type='button' class='btn btn-warning' onclick='file_del("+return_data.imgid+")'>삭제</button></div></div></div>";
+                var html = "<div class='col' id='f_"+return_data.imgid+"'><div class='card h-100'><img src='/data/"+return_data.savename+"' class='card-img-top'><div class='card-body'><button type='button' class='btn btn-warning' onclick='file_del("+return_data.imgid+")'>삭제</button></div></div></div>";
                 $("#imageArea").append(html);
             }
         }
