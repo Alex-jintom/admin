@@ -8,7 +8,7 @@ if(!$_SESSION['AUID']){
 
 $pageNumber  = $_GET['pageNumber']??1;//현재 페이지, 없으면 1
 if($pageNumber < 1) $pageNumber = 1;
-$pageCount  = $_GET['pageCount']??10;//페이지당 몇개씩 보여줄지, 없으면 10
+$pageCount  = $_GET['pageCount']??50;//페이지당 몇개씩 보여줄지, 없으면 10
 $startLimit = ($pageNumber-1)*$pageCount;//쿼리의 limit 시작 부분
 $firstPageNumber  = $_GET['firstPageNumber'];
 $cate1  = $_GET['cate1'];
