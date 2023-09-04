@@ -47,7 +47,7 @@ $mysqli->autocommit(FALSE);//커밋이 안되도록 지정
 
 try {
 
-    $query="INSERT INTO testdb.coupons
+    $query="INSERT INTO jin.coupons
     (coupon_name, coupon_image, coupon_type, coupon_price, coupon_ratio, status, regdate, userid, max_value, use_min_price)
     VALUES('".$coupon_name."'
     , '".$coupon_image."'
