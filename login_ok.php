@@ -1,23 +1,20 @@
 <?php session_start();
 include "/var/www/html/dbcon.php";
-ini_set( 'display_errors', '0' );
-
 $userid=$_POST["userid"];
 $passwd=$_POST["passwd"];
 $passwd=hash('sha512',$passwd);
 
-$query = "select * from admins where userid='".$userid."' and passwd='".$passwd."'";
+$query = "select * from members where userid='".$userid."' and passwd='".$passwd."'";
 $result = $mysqli->query($query) or die("query error => ".$mysqli->error);
 $rs = $result->fetch_object();
 
 if($rs){
-    $sql="update admins set last_login=now() where idx=".$rs->idx;
+    $_SESSION['UID']= $rs->userid;
+    $_SESSION['UNAME']= $rs->username;
+    $sql="update cart set userid='".$userid."' where ssid='".session_id()."'";//로그인하면 장바구니에 세션아이디가 같은 제품들의 userid를 업데이트한다.
     $result=$mysqli->query($sql) or die($mysqli->error);
-    $_SESSION['AUID']= $rs->userid;
-    $_SESSION['AUNAME']= $rs->username;
-    $_SESSION['ALEVEL']= $rs->level;
-   
-    echo "<script>alert('어서오십시오.');location.href='/product_list.php';</script>";
+
+    echo "<script>alert('어서오십시오.');location.href='/';</script>";
     exit;
 
 }else{
